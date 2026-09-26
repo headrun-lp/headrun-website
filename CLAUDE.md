@@ -4,7 +4,7 @@ Website for **HEADRUN** (Headrun LP, Greece) at `headrun.eu`. Astro 6 + Tailwind
 
 ## Rules
 - **Must stay free.** Public repo + GitHub Pages + GitHub Actions (unlimited on public repos) + Cloudflare DNS (free plan). Never make the repo private, never add Vercel or paid services.
-- **Build phase: localhost only.** `pnpm dev --port 4400` → http://localhost:4400. Nothing is pushed until Akis says the site is final.
+- **Live** on GitHub Pages (public repo). Edit on `dev`, preview on `pnpm dev --port 4400` → http://localhost:4400; push to `main` (via PR) deploys.
 - Bilingual EN/ΕΛ everywhere. English at `/`, Greek at `/el/`. Every text is `{ en, el }`; UI strings in `src/i18n/ui.ts`, events + clients in `src/data/events.ts`.
 - Footer shows trade name, seat address and ΓΕΜΗ number only — no VAT/ΑΦΜ or other details.
 - Contact is `team@headrun.eu` (mailto, no form).
@@ -19,7 +19,7 @@ Website for **HEADRUN** (Headrun LP, Greece) at `headrun.eu`. Astro 6 + Tailwind
 1. Drop photos in `public/images/events/<slug>/` (webp, ≤1600px wide).
 2. Add an entry to `events` in `src/data/events.ts` (both languages). It appears in the gallery and gets its own page automatically.
 
-## Go-live (not done yet)
-1. `gh repo edit headrun-lp/headrun-website --visibility public`, enable Pages with source = GitHub Actions, custom domain `headrun.eu`.
-2. Cloudflare DNS (grey cloud / DNS only): apex A → 185.199.108.153, .109.153, .110.153, .111.153 · `www` CNAME → `headrun-lp.github.io`.
-3. Push `dev` → PR → `/main`; then enforce HTTPS in Pages settings.
+## Hosting
+- Pages source = GitHub Actions, custom domain `headrun.eu` (set in repo Settings → Pages; `public/CNAME` matches).
+- Cloudflare DNS (grey cloud / DNS only): apex A → 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 · `www` CNAME → `headrun-lp.github.io`.
+- After DNS resolves: enable **Enforce HTTPS** in Settings → Pages.
