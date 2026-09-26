@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { href } from '../i18n/utils';
+import { clients } from '../data/events';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui.consulting;
+---
+<Base lang={lang} title={t.title[lang]} description={t.lead[lang]}>
+  <PageHeader title={t.title[lang]} lead={t.lead[lang]} />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <h2 class="font-display text-2xl font-extrabold sm:text-3xl">{t.servicesTitle[lang]}</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {t.services.map((s, i) => (
+        <article class="rounded-3xl border border-line bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-xl">
+          <span class="font-display text-sm font-bold text-ember">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-2 font-display text-xl font-bold">{s.title[lang]}</h3>
+          <p class="mt-2 text-muted">{s.body[lang]}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-white">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <h2 class="text-center text-sm font-semibold uppercase tracking-[0.2em] text-muted">{t.clientsTitle[lang]}</h2>
+      <ul class="mt-10 grid grid-cols-2 items-start gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+        {clients.map((c) => (
+          <li class="client flex flex-col items-center gap-3 text-center">
+            <img src={c.logo} alt={c.name} class="client-logo" loading="lazy" />
+            <span class="rounded-full bg-paper px-3 py-1 text-xs font-medium text-muted">{c.country[lang]}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <div class="relative overflow-hidden rounded-3xl bg-ink px-6 py-12 text-center text-white sm:px-12">
+      <div class="hero-bg opacity-70" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+      <div class="relative">
+        <h2 class="font-display text-3xl font-black sm:text-4xl">{t.ctaTitle[lang]}</h2>
+        <p class="mx-auto mt-3 max-w-xl text-white/75">{t.ctaBody[lang]}</p>
+        <a href={href(lang, '/contact')} class="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-display font-bold text-ink transition hover:-translate-y-0.5">{t.cta[lang]} <span aria-hidden="true">&#8594;</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

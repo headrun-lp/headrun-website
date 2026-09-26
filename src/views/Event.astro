@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import Carousel from '../components/Carousel.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { href } from '../i18n/utils';
+import type { EventItem } from '../data/events';
+interface Props { lang: Lang; event: EventItem }
+const { lang, event: e } = Astro.props;
+const t = ui.event;
+---
+<Base lang={lang} title={e.name[lang]} description={e.about[lang][0]} image={e.cover}>
+  <div class="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+    <a href={href(lang, '/events')} class="text-sm font-medium text-muted hover:text-ink">&#8592; {t.back[lang]}</a>
+  </div>
+
+  <section class="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+    <Carousel lang={lang} images={e.images} />
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 pb-20 pt-6 sm:px-6 lg:grid-cols-[1.4fr_1fr]">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{e.kicker[lang]}</p>
+      <h1 class="mt-2 font-display text-3xl font-black leading-tight tracking-tight sm:text-4xl">{e.name[lang]}</h1>
+      <dl class="mt-6 grid gap-3 sm:grid-cols-2">
+        <div><dt class="text-xs uppercase tracking-wider text-muted">{t.dates[lang]}</dt><dd class="font-semibold">{e.dates[lang]}</dd></div>
+        <div><dt class="text-xs uppercase tracking-wider text-muted">{t.location[lang]}</dt><dd class="font-semibold">{e.location[lang]}</dd></div>
+      </dl>
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {e.facts.map((f) => <li class="rounded-full border border-line bg-white px-3 py-1 text-sm">{f[lang]}</li>)}
+      </ul>
+      <h2 class="mt-10 font-display text-2xl font-extrabold">{t.about[lang]}</h2>
+      {e.about[lang].map((p) => <p class="mt-3 text-lg leading-relaxed text-muted">{p}</p>)}
+      {e.url && (
+        <a href={e.url} target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-display font-bold text-white transition hover:-translate-y-0.5">
+          {t.visit[lang]} <span aria-hidden="true">&#8599;</span>
+        </a>
+      )}
+    </div>
+
+    <aside class="space-y-6">
+      <div class="relative overflow-hidden rounded-3xl bg-ink p-6 text-white">
+        <div class="hero-bg opacity-60" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+        <div class="relative">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">{t.role[lang]}</p>
+          <p class="mt-2 font-display text-2xl font-extrabold">{e.role[lang]}</p>
+          <p class="mt-3 text-white/80">{e.roleBody[lang]}</p>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-line bg-white p-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{t.credits[lang]}</p>
+        <dl class="mt-3 space-y-3 text-sm">
+          {e.credits.map((c) => (
+            <div><dt class="font-semibold">{c.label[lang]}</dt><dd class="text-muted">{c.value[lang]}</dd></div>
+          ))}
+        </dl>
+      </div>
+    </aside>
+  </section>
+</Base>

@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { href } from '../i18n/utils';
+import { events } from '../data/events';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui.events;
+---
+<Base lang={lang} title={t.title[lang]} description={t.lead[lang]}>
+  <PageHeader title={t.title[lang]} lead={t.lead[lang]} />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <h2 class="font-display text-2xl font-extrabold sm:text-3xl">{t.supportTitle[lang]}</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {t.support.map((s, i) => (
+        <article class="rounded-3xl border border-line bg-white p-6">
+          <span class="font-display text-sm font-bold text-ember">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-2 font-display text-xl font-bold">{s.title[lang]}</h3>
+          <p class="mt-2 text-muted">{s.body[lang]}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+    <h2 class="font-display text-2xl font-extrabold sm:text-3xl">{t.galleryTitle[lang]}</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {events.map((e) => (
+        <a href={href(lang, `/events/${e.slug}`)} class="group relative block overflow-hidden rounded-3xl bg-ink text-white">
+          <img src={e.cover} alt="" class="aspect-[4/3] w-full object-cover opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-100" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6">
+            <h3 class="mt-2 font-display text-2xl font-extrabold leading-tight sm:text-3xl">{e.name[lang]}</h3>
+            <p class="mt-2 text-sm text-white/80">{e.dates[lang]}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

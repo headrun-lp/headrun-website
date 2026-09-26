@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { ui, company, type Lang } from '../i18n/ui';
+import { href, basePath } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  image?: string;
+  /** Dark page top (hero) — nav renders light-on-dark. */
+  dark?: boolean;
+}
+const { lang, title, description = ui.meta.description[lang], image = '/images/events/olympus/hike.webp', dark = false } = Astro.props;
+const fullTitle = title ? `${title} · ${company.name}` : company.name;
+const base = basePath(Astro.url.pathname);
+const site = Astro.site!;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(href(lang, base), site)} />
+    <link rel="alternate" hreflang="en" href={new URL(href('en', base), site)} />
+    <link rel="alternate" hreflang="el" href={new URL(href('el', base), site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(href('en', base), site)} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, site)} />
+    <meta property="og:locale" content={lang === 'el' ? 'el_GR' : 'en_US'} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Inter+Tight:wght@600;700;800;900&display=swap&subset=greek" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Nav lang={lang} dark={dark} />
+    <main class="flex-1"><slot /></main>
+    <Footer lang={lang} />
+  </body>
+</html>

@@ -1,0 +1,10 @@
+---
+import View from '../../views/Event.astro';
+import { events } from '../../data/events';
+
+export function getStaticPaths() {
+  return events.map((event) => ({ params: { slug: event.slug }, props: { event } }));
+}
+const { event } = Astro.props;
+---
+<View lang="en" event={event} />
