@@ -6,7 +6,7 @@ export const ui = {
   meta: {
     description: {
       en: 'HEADRUN — growth consulting for innovative companies, and organization, digital, marketing and sales support for events, camps and group activities.',
-      el: 'HEADRUN — συμβουλευτική ανάπτυξης για καινοτόμες εταιρείες, και οργάνωση, digital, marketing και πωλήσεις για εκδηλώσεις, camps και ομαδικές δραστηριότητες.',
+      el: 'HEADRUN — συμβουλευτική ανάπτυξης για καινοτόμες εταιρίες, και οργάνωση, digital, marketing και πωλήσεις για εκδηλώσεις, camps και ομαδικές δραστηριότητες.',
     },
   },
   nav: {
@@ -17,7 +17,7 @@ export const ui = {
   home: {
     h1: {
       en: 'We grow companies.<br><span class="text-gradient">We bring people together.</span>',
-      el: 'Αναπτύσσουμε εταιρείες.<br><span class="text-gradient">Φέρνουμε ανθρώπους κοντά.</span>',
+      el: 'Αναπτύσσουμε εταιρίες.<br><span class="text-gradient">Φέρνουμε ανθρώπους κοντά.</span>',
     },
     cta: { en: 'Let’s talk', el: 'Ας μιλήσουμε' },
   },
@@ -25,7 +25,7 @@ export const ui = {
     title: { en: 'Growth consulting', el: 'Συμβουλευτική ανάπτυξης' },
     lead: {
       en: 'We help innovative companies build a repeatable growth engine — from positioning to closed revenue. Hands-on, data-driven, and built to keep running after we leave.',
-      el: 'Βοηθάμε καινοτόμες εταιρείες να μεγαλώσουν σταθερά — από το πώς παρουσιάζονται μέχρι το κλείσιμο πωλήσεων. Πρακτικά, με βάση τα νούμερα, και με συστήματα που δουλεύουν και μετά από εμάς.',
+      el: 'Βοηθάμε καινοτόμες εταιρίες να μεγαλώσουν σταθερά — από το πώς παρουσιάζονται μέχρι το κλείσιμο πωλήσεων. Πρακτικά, με βάση τα νούμερα, και με συστήματα που δουλεύουν και μετά από εμάς.',
     },
     servicesTitle: { en: 'What we do', el: 'Τι κάνουμε' },
     services: [
@@ -134,7 +134,7 @@ export const ui = {
     title: { en: 'Let’s talk', el: 'Ας μιλήσουμε' },
     lead: {
       en: 'A growth challenge, an event to launch, or just an idea — write to us and we’ll get back to you within two working days.',
-      el: 'Θέλετε να αναπτύξετε την εταιρεία σας, να στήσετε μια εκδήλωση ή έχετε απλώς μια ιδέα; Γράψτε μας και θα σας απαντήσουμε μέσα σε δύο εργάσιμες.',
+      el: 'Θέλετε να αναπτύξετε την εταιρία σας, να στήσετε μια εκδήλωση ή έχετε απλώς μια ιδέα; Γράψτε μας και θα σας απαντήσουμε μέσα σε δύο εργάσιμες.',
     },
     cta: { en: 'Email us', el: 'Στείλτε μας email' },
   },

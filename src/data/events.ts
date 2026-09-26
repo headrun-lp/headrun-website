@@ -26,10 +26,10 @@ export const events: EventItem[] = [
     kicker: { en: 'Pieria · Mount Olympus', el: 'Πιερία · Όλυμπος' },
     dates: { en: '3–4 October 2026', el: '3–4 Οκτωβρίου 2026' },
     location: { en: 'Litochoro Park & across Pieria', el: 'Πάρκο Λιτοχώρου & σε όλη την Πιερία' },
-    role: { en: 'Supporting participating companies', el: 'Υποστήριξη εταιρειών που συμμετέχουν' },
+    role: { en: 'Supporting participating companies', el: 'Υποστήριξη εταιριών που συμμετέχουν' },
     roleBody: {
       en: 'We support companies that exhibit and deliver activities at the festival, helping them make the most of their participation.',
-      el: 'Υποστηρίζουμε εταιρείες που εκθέτουν ή κάνουν δράσεις στο φεστιβάλ, ώστε να βγάλουν το μέγιστο από τη συμμετοχή τους.',
+      el: 'Υποστηρίζουμε εταιρίες που εκθέτουν ή κάνουν δράσεις στο φεστιβάλ, ώστε να βγάλουν το μέγιστο από τη συμμετοχή τους.',
     },
     about: {
       en: [
