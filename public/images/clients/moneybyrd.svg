@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120" role="img" aria-label="MONEYBYRD">
+  <g transform="translate(6 14)">
+    <circle cx="46" cy="46" r="46" fill="#0e7c66"/>
+    <path d="M14 60 L26 52 C28 36 42 26 58 30 C62 22 70 20 76 24 L88 27 L78 32 C78 52 64 64 44 64 C34 64 24 64 14 60 Z" fill="#fff"/>
+    <path d="M32 50 C42 40 56 38 66 42 C60 52 46 56 32 50 Z" fill="#0e7c66"/>
+    <circle cx="71" cy="29" r="2.6" fill="#0e7c66"/>
+  </g>
+  <text x="118" y="82" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="60" font-weight="800" letter-spacing="2" fill="#0b1f1a">MONEY<tspan fill="#0e7c66">BYRD</tspan></text>
+</svg>

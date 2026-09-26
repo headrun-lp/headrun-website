@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { ui, company, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui.contact;
+---
+<Base lang={lang} title={t.title[lang]} description={t.lead[lang]} dark>
+  <section class="relative flex min-h-[80svh] items-center overflow-hidden text-white">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+      <div class="grid"></div><div class="vignette"></div>
+    </div>
+    <div class="relative mx-auto w-full max-w-6xl px-4 py-32 sm:px-6">
+      <h1 class="font-display text-4xl font-black tracking-tight sm:text-6xl">{t.title[lang]}</h1>
+      <p class="mt-5 max-w-xl text-lg text-white/80">{t.lead[lang]}</p>
+      <a href={`mailto:${company.email}`} class="mt-10 inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 font-display text-lg font-bold text-ink transition hover:-translate-y-0.5">
+        {t.cta[lang]} <span aria-hidden="true">&#8594;</span>
+      </a>
+      <p class="mt-4 font-display text-2xl font-bold sm:text-3xl"><a href={`mailto:${company.email}`} class="text-gradient">{company.email}</a></p>
+    </div>
+  </section>
+</Base>

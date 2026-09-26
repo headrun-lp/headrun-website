@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Inter Tight", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-ink: #0a0d18;
+  --color-ink-2: #121729;
+  --color-paper: #f7f6f3;
+  --color-line: #e6e3dc;
+  --color-muted: #5d6272;
+  --color-ember: #ff6a2b;
+  --color-violet: #7c5cff;
+  --color-sky: #2bb6ff;
+}
+
+/* Inter Tight has no Greek glyphs; Greek pages use Inter for headings too. */
+:root:lang(el) { --font-display: "Inter", system-ui, sans-serif; }
+/* Inter's display optical size turns Greek round and calligraphic at large sizes — keep the text cut. */
+:root:lang(el) body { font-optical-sizing: none; font-variation-settings: "opsz" 14; }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-ember), #ff9a5c 35%, var(--color-violet) 75%, var(--color-sky));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hero background: drifting colour blobs + fine grid + grain */
+.hero-bg { position: absolute; inset: 0; overflow: hidden; background: var(--color-ink); }
+.hero-bg .blob {
+  position: absolute; border-radius: 9999px; filter: blur(90px); opacity: .55;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+.hero-bg .b1 { width: 55vmax; height: 55vmax; left: -15vmax; top: -20vmax; background: var(--color-ember); }
+.hero-bg .b2 { width: 50vmax; height: 50vmax; right: -18vmax; top: -5vmax; background: var(--color-violet); animation-duration: 28s; animation-delay: -6s; }
+.hero-bg .b3 { width: 40vmax; height: 40vmax; left: 25vmax; bottom: -25vmax; background: var(--color-sky); opacity: .35; animation-duration: 32s; animation-delay: -12s; }
+.hero-bg .grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 75%);
+}
+.hero-bg .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, transparent 30%, rgba(10,13,24,.85) 80%); }
+.hero-bg .grain {
+  position: absolute; inset: -50%; opacity: .08; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(8vmax, 6vmax) scale(1.12); }
+  100% { transform: translate(-6vmax, 10vmax) scale(.95); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg .blob { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Client logos: same visual weight, greyscale until hover */
+.client-logo { height: 40px; width: 150px; object-fit: contain; filter: grayscale(1); opacity: .7; transition: filter .25s, opacity .25s; }
+.client:hover .client-logo { filter: none; opacity: 1; }
+
+/* Carousel */
+.carousel-track { scroll-snap-type: x mandatory; scrollbar-width: none; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track > * { scroll-snap-align: center; }

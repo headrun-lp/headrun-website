@@ -1,0 +1,16 @@
+---
+import { ui, company, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="bg-ink text-white/70">
+  <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <p>
+      <span class="font-display font-extrabold tracking-[0.18em] text-white">{company.name}</span>
+      <span class="mx-2 opacity-40">·</span>{ui.footer.address[lang]}
+      <span class="mx-2 opacity-40">·</span>{ui.footer.gemi[lang]} {company.gemi}
+    </p>
+    <p>© {year} {company.name}. {ui.footer.rights[lang]}</p>
+  </div>
+</footer>

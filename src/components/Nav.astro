@@ -1,0 +1,35 @@
+---
+import { ui, languages, company, type Lang } from '../i18n/ui';
+import { href, basePath } from '../i18n/utils';
+
+interface Props { lang: Lang; dark?: boolean }
+const { lang, dark = false } = Astro.props;
+const base = basePath(Astro.url.pathname);
+const links = [
+  { path: '/consulting', label: ui.nav.consulting[lang] },
+  { path: '/events', label: ui.nav.events[lang] },
+  { path: '/contact', label: ui.nav.contact[lang] },
+];
+const isActive = (p: string) => base === p || base.startsWith(`${p}/`);
+---
+<header class:list={['z-20 w-full', dark ? 'absolute top-0 text-white' : 'relative border-b border-line bg-paper/90 backdrop-blur']}>
+  <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-4 sm:px-6">
+    <a href={href(lang, '/')} class="font-display text-lg font-extrabold tracking-[0.18em]">{company.name}</a>
+    <div class="flex w-full items-center justify-between gap-3 text-[13px] font-medium sm:w-auto sm:justify-end sm:gap-7 sm:text-sm">
+      {links.map((l) => (
+        <a
+          href={href(lang, l.path)}
+          class:list={['transition-opacity hover:opacity-100', isActive(l.path) ? 'opacity-100 underline decoration-ember decoration-2 underline-offset-8' : 'opacity-70']}
+        >{l.label}</a>
+      ))}
+      <span class="flex items-center gap-1 text-xs" aria-label="Language">
+        {(Object.keys(languages) as Lang[]).map((l, i) => (
+          <>
+            {i > 0 && <span class="opacity-40">|</span>}
+            <a href={href(l, base)} hreflang={l} lang={l} class:list={[l === lang ? 'font-bold' : 'opacity-60 hover:opacity-100']}>{languages[l]}</a>
+          </>
+        ))}
+      </span>
+    </div>
+  </nav>
+</header>
